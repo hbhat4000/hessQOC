@@ -4,18 +4,16 @@ import numpy as np
 import pickle
 import scipy.optimize as so
 
-parser = argparse.ArgumentParser(prog='hessQOC',
-                                 description='Quantum optimal control with exact Hessians')
+parser = argparse.ArgumentParser(prog='compareQOC',
+                                 description='Compare QOC with and without Hessians')
 
 parser.add_argument('--mol', required=True, help='name of molecule')
 parser.add_argument('--basis', required=True, help='name of basis set')
 parser.add_argument('--outpath', required=True, help='output path')
-parser.add_argument('--postfix', required=True, help='string to append to saved files')
 parser.add_argument('--nsteps', type=int, required=True, help='number of time steps to take from 0 to T')
 parser.add_argument('--dt', type=float, required=True, help='deltat (size of time step) to use')
-parser.add_argument('--onlygrad', required=False, help='if present, only gradient will be used (no Hessian)')
-parser.add_argument('--method', required=False, help='scipy.optimize.minimize method to use')
-parser.add_argument('--finit', required=False, help='.npy array containing initial guess for f')
+parser.add_argument('--numruns', type=int, required=True, help='number of runs')
+parser.add_argument('--postfix', required=False, help='string to append to saved files')
 parser.add_argument('--gpu', required=False, type=int, help='which GPU to use')
 parser.add_argument('--opt', required=False, help='pickled dictionary with all optimization parameters')
 
@@ -71,7 +69,10 @@ print("beta = " + str(thisbeta))
 outpath = args.outpath
 
 # set postfix
-postfix = args.postfix
+if args.postfix:
+    postfix = args.postfix
+else:
+    postfix = ""
 
 # set nsteps
 numsteps = args.nsteps
@@ -80,11 +81,6 @@ print("numsteps = " + str(numsteps))
 # set dt
 dt = args.dt
 print("dt = " + str(dt))
-
-if args.finit:
-    finit = jnp.array(np.load(args.finit))
-else:
-    finit = jnp.array(np.random.normal(size=numsteps))
 
 # set optimization parameters
 if args.opt:
@@ -203,14 +199,6 @@ def cost(f, alpha, beta):
     pen = jnp.real(jnp.sum(resid * resid.conj()))
     return 0.5*jnp.sum(f**2) + 0.5*rho*pen
 
-# given forcing f, IC alpha, FC beta, return stats
-def stats(f, alpha, beta):
-    a = propSchro(f, alpha)
-    resid = a[-1] - beta
-    pen = jnp.real(jnp.sum(resid * resid.conj()))
-    controlcost = jnp.sum(f**2)
-    return controlcost, pen
-
 # first-order adjoint method
 def adjgrad(f, alpha, beta):
     manyhams = jnp.expand_dims(h0,0) + jnp.expand_dims(f,(1,2))*jnp.expand_dims(m,0)
@@ -314,9 +302,9 @@ def adjhess(f, alpha, beta):
 jcost = jit(cost)
 jadjgrad = jit(adjgrad)
 jadjhess = jit(adjhess)
-jstats = jit(stats)
 
 # force JIT compilation
+finit = jnp.array(np.random.normal(size=numsteps))
 mycost = jcost(finit, thisalpha, thisbeta)
 mygrad = jadjgrad(finit, thisalpha, thisbeta)
 myhess = jadjhess(finit, thisalpha, thisbeta)
@@ -334,37 +322,33 @@ def hessobj(x):
     jx = jnp.array(x)
     return np.array(jadjhess(jx,thisalpha,thisbeta))
 
-# callback
-f = open(outpath+'livestats_'+mol+'_'+basis+postfix+'.txt','w')
-f.close()
+# run both methods many times and save results
+numruns = args.numruns
+gradstats = np.zeros((numruns,6))
+hessstats = np.zeros((numruns,6))
 
-# the status=None part is needed for trust
-def mycb(xk, status=None):
-    np.save(outpath+mol+'_'+basis+postfix+'.npy',xk)
-    # the function stats/jstats will return the norm squared of f and the norm squared of the residual,
-    # with no prefactors of 0.5
-    controlcost, residnorm2 = jstats(jnp.array(xk),thisalpha,thisbeta)
-    # to derive the actual cost that gets minimizes, the prefactors of 0.5 and rho must be placed appropriately
-    overallcost = 0.5*(controlcost + rho*residnorm2)
-    normgrad = np.linalg.norm(gradobj(xk))
-    f = open(outpath+'livestats_'+mol+'_'+basis+postfix+'.txt','a')
-    xx = "||resid|| = " + str(np.sqrt(residnorm2)) + "  ||f|| = " + str(np.sqrt(controlcost)) + "  overallcost = " + str(overallcost) + "  ||grad|| = " + str(normgrad)
-    f.write(xx)
-    f.write("\n")
-    f.close()
-    return False
+def stats(xstar, finit):
+    out = np.zeros(6)
+    out[0] = xstar.nit
+    out[1] = xstar.execution_time
+    out[2] = np.linalg.norm(xstar.x)
+    out[3] = np.linalg.norm(gradobj(xstar.x))
+    a = propSchro(jnp.array(xstar.x), thisalpha)
+    out[4] = np.linalg.norm(np.array(a[-1] - thisbeta))
+    out[5] = obj(xstar.x)/obj(finit)
+    return out
 
-# run optimizer
-if args.method:
-    mymethod = args.method
-else:
-    mymethod = 'trust-constr'
-
-if args.onlygrad:
-    xstar = so.minimize(obj, x0=finit, method=mymethod, jac=gradobj, callback=mycb, 
-                        options={'gtol':gtol,'xtol':xtol,'maxiter':maxiter,'verbose':2})
-else:
-    xstar = so.minimize(obj, x0=finit, method=mymethod, jac=gradobj, hess=hessobj, callback=mycb, 
-                        options={'gtol':gtol,'xtol':xtol,'maxiter':maxiter,'verbose':2})
+for run in range(numruns):
+    print("Run " + str(run))
+    finit = jnp.array(np.random.normal(size=numsteps))
+    xstargrad = so.minimize(obj, x0=finit, method='trust-constr', jac=gradobj,
+                            options={'gtol':gtol,'xtol':xtol,'maxiter':maxiter,'verbose':1})
+    gradstats[run, :] = stats(xstargrad, finit) 
     
-np.save(outpath+'final_'+mol+'_'+basis+postfix+'.npy',xstar.x)
+    xstarhess = so.minimize(obj, x0=finit, method='trust-constr', jac=gradobj, hess=hessobj,
+                            options={'gtol':gtol,'xtol':xtol,'maxiter':maxiter,'verbose':1})
+    hessstats[run, :] = stats(xstarhess, finit)
+
+print(gradstats)
+print(hessstats)
+
