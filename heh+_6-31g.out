@@ -1,0 +1,27 @@
+alpha = [1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+beta = [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1.]
+numsteps = 200
+dt = 0.1
+Run 0
+The maximum number of function evaluations is exceeded.
+Number of iterations: 10000, function evaluations: 10000, CG iterations: 929688, optimality: 8.86e+00, constraint violation: 0.00e+00, execution time: 2.7e+02 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 2768, function evaluations: 2761, CG iterations: 52712, optimality: 1.52e-06, constraint violation: 0.00e+00, execution time: 4.3e+01 s.
+alpha = [1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+beta = [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1.]
+numsteps = 200
+dt = 0.1
+Run 0
+`xtol` termination condition is satisfied.
+Number of iterations: 6201, function evaluations: 6201, CG iterations: 477425, optimality: 4.51e-05, constraint violation: 0.00e+00, execution time: 9.3e+01 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 3985, function evaluations: 3979, CG iterations: 73679, optimality: 3.18e-06, constraint violation: 0.00e+00, execution time: 6.6e+01 s.
+alpha = [1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+beta = [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1.]
+numsteps = 200
+dt = 0.1
+Run 0
+The maximum number of function evaluations is exceeded.
+Number of iterations: 10000, function evaluations: 10000, CG iterations: 960259, optimality: 2.95e+00, constraint violation: 0.00e+00, execution time: 1.6e+02 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 3147, function evaluations: 3140, CG iterations: 59167, optimality: 1.10e-07, constraint violation: 0.00e+00, execution time: 5.1e+01 s.
