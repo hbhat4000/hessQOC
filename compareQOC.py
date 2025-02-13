@@ -349,6 +349,6 @@ for run in range(numruns):
                             options={'gtol':gtol,'xtol':xtol,'maxiter':maxiter,'verbose':1})
     hessstats[run, :] = stats(xstarhess, finit)
 
-print(gradstats)
-print(hessstats)
+fname = outpath + "compare_" + mol + "_" + basis + postfix + ".npz"
+np.savez(fname, gradstats=gradstats, hessstats=hessstats)
 

@@ -83,6 +83,8 @@ print("dt = " + str(dt))
 
 if args.finit:
     finit = jnp.array(np.load(args.finit))
+    print("Loaded " + args.finit)
+    print(finit.shape)
 else:
     finit = jnp.array(np.random.normal(size=numsteps))
 
