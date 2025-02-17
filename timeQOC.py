@@ -1,23 +1,19 @@
 import os
 import argparse
 import numpy as np
-import pickle
-import scipy.optimize as so
+import time
 
-parser = argparse.ArgumentParser(prog='hessQOC',
-                                 description='Quantum optimal control with exact Hessians')
+parser = argparse.ArgumentParser(prog='timeQOC',
+                                 description='Time the adjgrad and adjhess QOC functions')
 
 parser.add_argument('--mol', required=True, help='name of molecule')
 parser.add_argument('--basis', required=True, help='name of basis set')
 parser.add_argument('--outpath', required=True, help='output path')
 parser.add_argument('--postfix', required=True, help='string to append to saved files')
 parser.add_argument('--nsteps', type=int, required=True, help='number of time steps to take from 0 to T')
+parser.add_argument('--numruns', required=True, type=int, help='number of runs')
 parser.add_argument('--dt', type=float, required=True, help='deltat (size of time step) to use')
-parser.add_argument('--onlygrad', required=False, help='if present, only gradient will be used (no Hessian)')
-parser.add_argument('--method', required=False, help='scipy.optimize.minimize method to use')
-parser.add_argument('--finit', required=False, help='.npy array containing initial guess for f')
 parser.add_argument('--gpu', required=False, type=int, help='which GPU to use')
-parser.add_argument('--opt', required=False, help='pickled dictionary with all optimization parameters')
 
 # actually parse command-line arguments
 args = parser.parse_args()
@@ -81,30 +77,7 @@ print("numsteps = " + str(numsteps))
 dt = args.dt
 print("dt = " + str(dt))
 
-if args.finit:
-    finit = jnp.array(np.load(args.finit))
-    print("Loaded " + args.finit)
-    print(finit.shape)
-else:
-    finit = jnp.array(np.random.normal(size=numsteps))
-
-# set optimization parameters
-if args.opt:
-    opfile = open(args.opt, 'rb')
-    optparams = pickle.load(opfile)
-    opfile.close()
-    print("")
-    print("Loading optimization parameters from " + args.opt)
-    print("")
-    maxiter = optparams['maxiter']
-    xtol = optparams['xtol']
-    gtol = optparams['gtol']
-    rho = optparams['rho']
-else:
-    maxiter = 10000
-    xtol = 1e-10
-    gtol = 1e-10
-    rho = 1e6
+rho = 1e6
 
 # (d/dx) \exp(-1j*dt*(h0 + x m))
 # where you pass in the eigenvectors and eigenvalues of (h0 + x m)
@@ -318,54 +291,31 @@ jadjhess = jit(adjhess)
 jstats = jit(stats)
 
 # force JIT compilation
+finit = jnp.array(np.random.normal(size=numsteps))
 mycost = jcost(finit, thisalpha, thisbeta)
 mygrad = jadjgrad(finit, thisalpha, thisbeta)
 myhess = jadjhess(finit, thisalpha, thisbeta)
 
-# wrappers
-def obj(x):
-    jx = jnp.array(x)
-    return jcost(jx,thisalpha,thisbeta).item()
+# number of runs
+numruns = args.numruns
 
-def gradobj(x):
-    jx = jnp.array(x)
-    return np.array(jadjgrad(jx,thisalpha,thisbeta))
+# time adjgrad
+gradtimes = np.zeros(numruns)
+for j in range(numruns):
+    finit = jnp.array(np.random.normal(size=numsteps))
+    start = time.time()
+    mygrad = jadjgrad(finit, thisalpha, thisbeta)
+    end = time.time()
+    gradtimes[j] = end-start
 
-def hessobj(x):
-    jx = jnp.array(x)
-    return np.array(jadjhess(jx,thisalpha,thisbeta))
+# time adjgrad
+hesstimes = np.zeros(numruns)
+for j in range(numruns):
+    finit = jnp.array(np.random.normal(size=numsteps))
+    start = time.time()
+    myhess = jadjhess(finit, thisalpha, thisbeta)
+    end = time.time()
+    hesstimes[j] = end-start
 
-# callback
-f = open(outpath+'livestats_'+mol+'_'+basis+postfix+'.txt','w')
-f.close()
-
-# the status=None part is needed for trust
-def mycb(xk, status=None):
-    np.save(outpath+mol+'_'+basis+postfix+'.npy',xk)
-    # the function stats/jstats will return the norm squared of f and the norm squared of the residual,
-    # with no prefactors of 0.5
-    controlcost, residnorm2 = jstats(jnp.array(xk),thisalpha,thisbeta)
-    # to derive the actual cost that gets minimizes, the prefactors of 0.5 and rho must be placed appropriately
-    overallcost = 0.5*(controlcost + rho*residnorm2)
-    normgrad = np.linalg.norm(gradobj(xk))
-    f = open(outpath+'livestats_'+mol+'_'+basis+postfix+'.txt','a')
-    xx = "||resid|| = " + str(np.sqrt(residnorm2)) + "  ||f|| = " + str(np.sqrt(controlcost)) + "  overallcost = " + str(overallcost) + "  ||grad|| = " + str(normgrad)
-    f.write(xx)
-    f.write("\n")
-    f.close()
-    return False
-
-# run optimizer
-if args.method:
-    mymethod = args.method
-else:
-    mymethod = 'trust-constr'
-
-if args.onlygrad:
-    xstar = so.minimize(obj, x0=finit, method=mymethod, jac=gradobj, callback=mycb, 
-                        options={'gtol':gtol,'xtol':xtol,'maxiter':maxiter,'verbose':2})
-else:
-    xstar = so.minimize(obj, x0=finit, method=mymethod, jac=gradobj, hess=hessobj, callback=mycb, 
-                        options={'gtol':gtol,'xtol':xtol,'maxiter':maxiter,'verbose':2})
-    
-np.save(outpath+'final_'+mol+'_'+basis+postfix+'.npy',xstar.x)
+outfname = outpath + 'times_' + str(n) + '_' + str(numsteps) + postfix + '.npz'
+np.savez(outfname, gt=gradtimes, ht=hesstimes)

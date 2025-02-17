@@ -280,7 +280,6 @@ def adjhess(f, alpha, beta):
     def mubody(kk, amu):
         k = (numsteps-1) - kk
         prevmu1 = amu[kk] @ matexp[k]
-        z = jnp.zeros((numsteps-1,n), dtype=jnp.complex128)
         prevmu2 = allprevmu2[kk] * jnp.expand_dims(alllamb[k+1].T @ allexpderivs[k],0)
         return amu.at[kk+1].set( prevmu1+prevmu2 )
 
