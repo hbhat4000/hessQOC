@@ -330,7 +330,7 @@ def stats(xstar, finit):
     out = np.zeros(6)
     out[0] = xstar.nit
     out[1] = xstar.execution_time
-    out[2] = np.linalg.norm(xstar.x)
+    out[2] = obj(xstar.x)
     out[3] = np.linalg.norm(gradobj(xstar.x))
     a = propSchro(jnp.array(xstar.x), thisalpha)
     out[4] = np.linalg.norm(np.array(a[-1] - thisbeta))
@@ -339,7 +339,7 @@ def stats(xstar, finit):
 
 for run in range(numruns):
     print("Run " + str(run))
-    finit = jnp.array(np.random.normal(size=numsteps))
+    finit = jnp.array(0.1*np.random.normal(size=numsteps))
     xstargrad = so.minimize(obj, x0=finit, method='trust-constr', jac=gradobj,
                             options={'gtol':gtol,'xtol':xtol,'maxiter':maxiter,'verbose':1})
     gradstats[run, :] = stats(xstargrad, finit) 

@@ -1,6 +1,6 @@
 #!/bin/bash
-#SBATCH --job-name=heh+_6-31g
-#SBATCH --time=00-01:00
+#SBATCH --job-name=h2_sto-3g
+#SBATCH --time=00-12:00
 #SBATCH --partition=gpuA100x4
 #SBATCH --mem=64G
 #SBATCH --signal=USR2
@@ -10,10 +10,9 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=hbhat@ucmerced.edu
-#SBATCH --output=heh+_6-31g.out
-#SBATCH --error=heh+_6-31g.err
-#SBATCH --array=0-99
+#SBATCH --output=h2_sto-3g.out
+#SBATCH --error=h2_sto-3g.err
 # ---------------------------------------------------
 
-python compareQOC.py --mol heh+ --basis 6-31g --outpath ./output/compare_heh+_6-31g/ --nsteps 200 --dt 1e-1 --numruns 1 --postfix $SLURM_ARRAY_TASK_ID
+python compareQOC.py --mol h2 --basis sto-3g --outpath ./output/ --nsteps 100 --dt 1e-1 --numruns 100
 

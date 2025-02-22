@@ -1,0 +1,504 @@
+alpha = [1. 0. 0. 0.]
+beta = [0. 0. 0. 1.]
+numsteps = 100
+dt = 0.1
+Run 0
+`xtol` termination condition is satisfied.
+Number of iterations: 1055, function evaluations: 1055, CG iterations: 36068, optimality: 3.07e-03, constraint violation: 0.00e+00, execution time:  8.1 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 96, function evaluations: 86, CG iterations: 1785, optimality: 2.35e-04, constraint violation: 0.00e+00, execution time: 0.78 s.
+Run 1
+`xtol` termination condition is satisfied.
+Number of iterations: 1144, function evaluations: 1144, CG iterations: 35838, optimality: 3.07e-03, constraint violation: 0.00e+00, execution time:  8.4 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 120, function evaluations: 114, CG iterations: 2666, optimality: 1.51e-05, constraint violation: 0.00e+00, execution time: 0.97 s.
+Run 2
+`xtol` termination condition is satisfied.
+Number of iterations: 634, function evaluations: 634, CG iterations: 22639, optimality: 1.02e-02, constraint violation: 0.00e+00, execution time:  4.9 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 77, function evaluations: 71, CG iterations: 1333, optimality: 8.04e-05, constraint violation: 0.00e+00, execution time:  0.6 s.
+Run 3
+`xtol` termination condition is satisfied.
+Number of iterations: 1389, function evaluations: 1389, CG iterations: 39810, optimality: 2.47e-04, constraint violation: 0.00e+00, execution time: 1e+01 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 100, function evaluations: 94, CG iterations: 2197, optimality: 5.19e-06, constraint violation: 0.00e+00, execution time: 0.84 s.
+Run 4
+`xtol` termination condition is satisfied.
+Number of iterations: 682, function evaluations: 682, CG iterations: 21834, optimality: 4.62e-04, constraint violation: 0.00e+00, execution time:  5.0 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 128, function evaluations: 122, CG iterations: 2403, optimality: 2.59e-05, constraint violation: 0.00e+00, execution time:  1.0 s.
+Run 5
+`xtol` termination condition is satisfied.
+Number of iterations: 1644, function evaluations: 1644, CG iterations: 60983, optimality: 9.06e-04, constraint violation: 0.00e+00, execution time: 1.3e+01 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 106, function evaluations: 100, CG iterations: 2927, optimality: 2.16e-05, constraint violation: 0.00e+00, execution time: 0.93 s.
+Run 6
+`xtol` termination condition is satisfied.
+Number of iterations: 471, function evaluations: 471, CG iterations: 12085, optimality: 4.24e-04, constraint violation: 0.00e+00, execution time:  3.4 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 88, function evaluations: 77, CG iterations: 1307, optimality: 3.96e-05, constraint violation: 0.00e+00, execution time: 0.69 s.
+Run 7
+`xtol` termination condition is satisfied.
+Number of iterations: 985, function evaluations: 985, CG iterations: 30001, optimality: 2.64e-03, constraint violation: 0.00e+00, execution time:  7.2 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 107, function evaluations: 100, CG iterations: 2514, optimality: 3.41e-06, constraint violation: 0.00e+00, execution time:  0.9 s.
+Run 8
+`xtol` termination condition is satisfied.
+Number of iterations: 781, function evaluations: 781, CG iterations: 24199, optimality: 3.45e-03, constraint violation: 0.00e+00, execution time:  5.8 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 125, function evaluations: 117, CG iterations: 3148, optimality: 9.70e-08, constraint violation: 0.00e+00, execution time:  1.0 s.
+Run 9
+`xtol` termination condition is satisfied.
+Number of iterations: 889, function evaluations: 889, CG iterations: 25290, optimality: 9.07e-03, constraint violation: 0.00e+00, execution time:  6.4 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 110, function evaluations: 104, CG iterations: 2124, optimality: 1.78e-05, constraint violation: 0.00e+00, execution time: 0.89 s.
+Run 10
+`xtol` termination condition is satisfied.
+Number of iterations: 960, function evaluations: 960, CG iterations: 33029, optimality: 1.51e-03, constraint violation: 0.00e+00, execution time:  7.2 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 92, function evaluations: 87, CG iterations: 2105, optimality: 4.46e-05, constraint violation: 0.00e+00, execution time: 0.79 s.
+Run 11
+`xtol` termination condition is satisfied.
+Number of iterations: 1328, function evaluations: 1328, CG iterations: 50829, optimality: 4.89e-03, constraint violation: 0.00e+00, execution time: 1e+01 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 135, function evaluations: 127, CG iterations: 2350, optimality: 2.19e-07, constraint violation: 0.00e+00, execution time:  1.1 s.
+Run 12
+`xtol` termination condition is satisfied.
+Number of iterations: 529, function evaluations: 529, CG iterations: 16008, optimality: 8.79e-04, constraint violation: 0.00e+00, execution time:  3.9 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 104, function evaluations: 98, CG iterations: 1341, optimality: 3.90e-05, constraint violation: 0.00e+00, execution time: 0.82 s.
+Run 13
+`xtol` termination condition is satisfied.
+Number of iterations: 1199, function evaluations: 1199, CG iterations: 41389, optimality: 3.00e-04, constraint violation: 0.00e+00, execution time:  9.0 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 123, function evaluations: 118, CG iterations: 2643, optimality: 5.46e-06, constraint violation: 0.00e+00, execution time:  1.0 s.
+Run 14
+`xtol` termination condition is satisfied.
+Number of iterations: 852, function evaluations: 852, CG iterations: 23897, optimality: 1.17e-02, constraint violation: 0.00e+00, execution time:  6.2 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 121, function evaluations: 115, CG iterations: 1697, optimality: 1.09e-04, constraint violation: 0.00e+00, execution time: 0.94 s.
+Run 15
+`xtol` termination condition is satisfied.
+Number of iterations: 1302, function evaluations: 1302, CG iterations: 46334, optimality: 1.53e-04, constraint violation: 0.00e+00, execution time:  9.9 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 87, function evaluations: 79, CG iterations: 2324, optimality: 2.47e-05, constraint violation: 0.00e+00, execution time: 0.72 s.
+Run 16
+`xtol` termination condition is satisfied.
+Number of iterations: 747, function evaluations: 747, CG iterations: 17682, optimality: 3.15e-03, constraint violation: 0.00e+00, execution time:  5.2 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 64, function evaluations: 56, CG iterations: 923, optimality: 3.67e-04, constraint violation: 0.00e+00, execution time: 0.48 s.
+Run 17
+`xtol` termination condition is satisfied.
+Number of iterations: 1231, function evaluations: 1231, CG iterations: 40196, optimality: 6.34e-04, constraint violation: 0.00e+00, execution time:  9.2 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 104, function evaluations: 99, CG iterations: 2422, optimality: 2.30e-05, constraint violation: 0.00e+00, execution time: 0.89 s.
+Run 18
+`xtol` termination condition is satisfied.
+Number of iterations: 703, function evaluations: 703, CG iterations: 19598, optimality: 2.57e-03, constraint violation: 0.00e+00, execution time:  5.0 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 145, function evaluations: 139, CG iterations: 3094, optimality: 8.16e-06, constraint violation: 0.00e+00, execution time:  1.2 s.
+Run 19
+`xtol` termination condition is satisfied.
+Number of iterations: 1102, function evaluations: 1102, CG iterations: 39796, optimality: 3.11e-03, constraint violation: 0.00e+00, execution time:  8.4 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 67, function evaluations: 61, CG iterations: 847, optimality: 1.17e-04, constraint violation: 0.00e+00, execution time:  0.5 s.
+Run 20
+`xtol` termination condition is satisfied.
+Number of iterations: 840, function evaluations: 840, CG iterations: 22575, optimality: 4.62e-03, constraint violation: 0.00e+00, execution time:  6.0 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 93, function evaluations: 84, CG iterations: 1385, optimality: 3.25e-04, constraint violation: 0.00e+00, execution time:  0.7 s.
+Run 21
+`xtol` termination condition is satisfied.
+Number of iterations: 798, function evaluations: 798, CG iterations: 25707, optimality: 4.65e-04, constraint violation: 0.00e+00, execution time:  6.0 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 128, function evaluations: 123, CG iterations: 2695, optimality: 5.58e-05, constraint violation: 0.00e+00, execution time:  1.0 s.
+Run 22
+`xtol` termination condition is satisfied.
+Number of iterations: 1484, function evaluations: 1484, CG iterations: 57833, optimality: 2.53e-03, constraint violation: 0.00e+00, execution time: 1.2e+01 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 142, function evaluations: 134, CG iterations: 3183, optimality: 2.67e-07, constraint violation: 0.00e+00, execution time:  1.2 s.
+Run 23
+`xtol` termination condition is satisfied.
+Number of iterations: 2167, function evaluations: 2167, CG iterations: 147346, optimality: 2.06e-04, constraint violation: 0.00e+00, execution time: 2e+01 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 67, function evaluations: 61, CG iterations: 913, optimality: 1.12e-04, constraint violation: 0.00e+00, execution time: 0.51 s.
+Run 24
+`xtol` termination condition is satisfied.
+Number of iterations: 1136, function evaluations: 1136, CG iterations: 41593, optimality: 4.09e-04, constraint violation: 0.00e+00, execution time:  8.7 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 95, function evaluations: 86, CG iterations: 2082, optimality: 6.61e-06, constraint violation: 0.00e+00, execution time: 0.78 s.
+Run 25
+`xtol` termination condition is satisfied.
+Number of iterations: 857, function evaluations: 857, CG iterations: 27237, optimality: 2.90e-03, constraint violation: 0.00e+00, execution time:  6.4 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 115, function evaluations: 106, CG iterations: 2430, optimality: 3.08e-05, constraint violation: 0.00e+00, execution time: 0.96 s.
+Run 26
+`xtol` termination condition is satisfied.
+Number of iterations: 723, function evaluations: 723, CG iterations: 23485, optimality: 6.25e-04, constraint violation: 0.00e+00, execution time:  5.5 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 85, function evaluations: 78, CG iterations: 1003, optimality: 1.07e-05, constraint violation: 0.00e+00, execution time: 0.65 s.
+Run 27
+`xtol` termination condition is satisfied.
+Number of iterations: 1643, function evaluations: 1643, CG iterations: 66815, optimality: 3.08e-03, constraint violation: 0.00e+00, execution time: 1.3e+01 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 95, function evaluations: 86, CG iterations: 1654, optimality: 3.23e-04, constraint violation: 0.00e+00, execution time: 0.75 s.
+Run 28
+`xtol` termination condition is satisfied.
+Number of iterations: 849, function evaluations: 849, CG iterations: 24431, optimality: 7.28e-03, constraint violation: 0.00e+00, execution time:  6.2 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 111, function evaluations: 105, CG iterations: 1722, optimality: 1.46e-04, constraint violation: 0.00e+00, execution time: 0.91 s.
+Run 29
+`xtol` termination condition is satisfied.
+Number of iterations: 1125, function evaluations: 1125, CG iterations: 34623, optimality: 4.92e-03, constraint violation: 0.00e+00, execution time:  8.3 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 93, function evaluations: 84, CG iterations: 1296, optimality: 2.12e-05, constraint violation: 0.00e+00, execution time: 0.72 s.
+Run 30
+`xtol` termination condition is satisfied.
+Number of iterations: 781, function evaluations: 781, CG iterations: 24576, optimality: 3.21e-04, constraint violation: 0.00e+00, execution time:  5.8 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 80, function evaluations: 74, CG iterations: 950, optimality: 2.77e-04, constraint violation: 0.00e+00, execution time:  0.6 s.
+Run 31
+`xtol` termination condition is satisfied.
+Number of iterations: 765, function evaluations: 765, CG iterations: 20427, optimality: 7.24e-03, constraint violation: 0.00e+00, execution time:  5.5 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 112, function evaluations: 104, CG iterations: 2356, optimality: 2.98e-07, constraint violation: 0.00e+00, execution time: 0.95 s.
+Run 32
+`xtol` termination condition is satisfied.
+Number of iterations: 1004, function evaluations: 1004, CG iterations: 34386, optimality: 4.49e-03, constraint violation: 0.00e+00, execution time:  7.6 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 83, function evaluations: 76, CG iterations: 2433, optimality: 2.29e-05, constraint violation: 0.00e+00, execution time: 0.71 s.
+Run 33
+`xtol` termination condition is satisfied.
+Number of iterations: 1612, function evaluations: 1612, CG iterations: 56502, optimality: 3.25e-03, constraint violation: 0.00e+00, execution time: 1.2e+01 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 80, function evaluations: 74, CG iterations: 1004, optimality: 7.53e-05, constraint violation: 0.00e+00, execution time: 0.61 s.
+Run 34
+`xtol` termination condition is satisfied.
+Number of iterations: 893, function evaluations: 893, CG iterations: 26300, optimality: 2.74e-04, constraint violation: 0.00e+00, execution time:  6.5 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 102, function evaluations: 93, CG iterations: 2467, optimality: 7.89e-04, constraint violation: 0.00e+00, execution time: 0.92 s.
+Run 35
+`xtol` termination condition is satisfied.
+Number of iterations: 743, function evaluations: 743, CG iterations: 24034, optimality: 1.27e-03, constraint violation: 0.00e+00, execution time:  5.5 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 141, function evaluations: 137, CG iterations: 3939, optimality: 8.46e-05, constraint violation: 0.00e+00, execution time:  1.2 s.
+Run 36
+`xtol` termination condition is satisfied.
+Number of iterations: 816, function evaluations: 816, CG iterations: 25229, optimality: 2.59e-03, constraint violation: 0.00e+00, execution time:  6.0 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 85, function evaluations: 77, CG iterations: 1022, optimality: 3.35e-04, constraint violation: 0.00e+00, execution time: 0.61 s.
+Run 37
+`xtol` termination condition is satisfied.
+Number of iterations: 1063, function evaluations: 1063, CG iterations: 36795, optimality: 2.19e-03, constraint violation: 0.00e+00, execution time:  8.1 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 147, function evaluations: 141, CG iterations: 3877, optimality: 6.55e-06, constraint violation: 0.00e+00, execution time:  1.2 s.
+Run 38
+`xtol` termination condition is satisfied.
+Number of iterations: 1024, function evaluations: 1024, CG iterations: 33849, optimality: 1.41e-03, constraint violation: 0.00e+00, execution time:  7.6 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 90, function evaluations: 83, CG iterations: 1489, optimality: 2.25e-05, constraint violation: 0.00e+00, execution time: 0.71 s.
+Run 39
+`xtol` termination condition is satisfied.
+Number of iterations: 550, function evaluations: 550, CG iterations: 15320, optimality: 7.60e-04, constraint violation: 0.00e+00, execution time:  4.0 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 128, function evaluations: 123, CG iterations: 2876, optimality: 1.92e-05, constraint violation: 0.00e+00, execution time:  1.1 s.
+Run 40
+`xtol` termination condition is satisfied.
+Number of iterations: 653, function evaluations: 653, CG iterations: 17636, optimality: 5.27e-04, constraint violation: 0.00e+00, execution time:  4.7 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 102, function evaluations: 93, CG iterations: 1724, optimality: 3.45e-05, constraint violation: 0.00e+00, execution time:  0.8 s.
+Run 41
+`xtol` termination condition is satisfied.
+Number of iterations: 726, function evaluations: 726, CG iterations: 23313, optimality: 5.76e-04, constraint violation: 0.00e+00, execution time:  5.4 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 129, function evaluations: 124, CG iterations: 2966, optimality: 1.15e-05, constraint violation: 0.00e+00, execution time:  1.1 s.
+Run 42
+`xtol` termination condition is satisfied.
+Number of iterations: 779, function evaluations: 779, CG iterations: 21783, optimality: 4.37e-03, constraint violation: 0.00e+00, execution time:  5.7 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 120, function evaluations: 112, CG iterations: 2625, optimality: 3.80e-05, constraint violation: 0.00e+00, execution time:  1.0 s.
+Run 43
+`xtol` termination condition is satisfied.
+Number of iterations: 644, function evaluations: 644, CG iterations: 18027, optimality: 6.34e-04, constraint violation: 0.00e+00, execution time:  4.7 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 87, function evaluations: 81, CG iterations: 1383, optimality: 1.43e-05, constraint violation: 0.00e+00, execution time: 0.68 s.
+Run 44
+`xtol` termination condition is satisfied.
+Number of iterations: 1447, function evaluations: 1447, CG iterations: 58057, optimality: 1.02e-03, constraint violation: 0.00e+00, execution time: 1.1e+01 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 97, function evaluations: 89, CG iterations: 1423, optimality: 1.05e-06, constraint violation: 0.00e+00, execution time: 0.74 s.
+Run 45
+`xtol` termination condition is satisfied.
+Number of iterations: 1322, function evaluations: 1322, CG iterations: 43185, optimality: 2.91e-03, constraint violation: 0.00e+00, execution time:  9.8 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 97, function evaluations: 91, CG iterations: 1447, optimality: 7.15e-05, constraint violation: 0.00e+00, execution time: 0.74 s.
+Run 46
+`xtol` termination condition is satisfied.
+Number of iterations: 738, function evaluations: 738, CG iterations: 19932, optimality: 1.38e-03, constraint violation: 0.00e+00, execution time:  5.3 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 86, function evaluations: 80, CG iterations: 1186, optimality: 3.23e-05, constraint violation: 0.00e+00, execution time: 0.66 s.
+Run 47
+`xtol` termination condition is satisfied.
+Number of iterations: 944, function evaluations: 944, CG iterations: 26999, optimality: 2.12e-03, constraint violation: 0.00e+00, execution time:  6.8 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 103, function evaluations: 98, CG iterations: 2730, optimality: 2.76e-05, constraint violation: 0.00e+00, execution time: 0.88 s.
+Run 48
+`xtol` termination condition is satisfied.
+Number of iterations: 1141, function evaluations: 1141, CG iterations: 35737, optimality: 9.96e-04, constraint violation: 0.00e+00, execution time:  8.5 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 69, function evaluations: 61, CG iterations: 793, optimality: 3.55e-05, constraint violation: 0.00e+00, execution time: 0.52 s.
+Run 49
+`xtol` termination condition is satisfied.
+Number of iterations: 601, function evaluations: 601, CG iterations: 15094, optimality: 8.70e-04, constraint violation: 0.00e+00, execution time:  4.3 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 72, function evaluations: 65, CG iterations: 1018, optimality: 9.40e-06, constraint violation: 0.00e+00, execution time: 0.55 s.
+Run 50
+`xtol` termination condition is satisfied.
+Number of iterations: 955, function evaluations: 955, CG iterations: 33226, optimality: 4.64e-04, constraint violation: 0.00e+00, execution time:  7.2 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 108, function evaluations: 102, CG iterations: 1883, optimality: 2.54e-05, constraint violation: 0.00e+00, execution time: 0.87 s.
+Run 51
+`xtol` termination condition is satisfied.
+Number of iterations: 1099, function evaluations: 1099, CG iterations: 33033, optimality: 2.48e-04, constraint violation: 0.00e+00, execution time:  8.1 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 94, function evaluations: 87, CG iterations: 2263, optimality: 2.62e-06, constraint violation: 0.00e+00, execution time:  0.8 s.
+Run 52
+`xtol` termination condition is satisfied.
+Number of iterations: 594, function evaluations: 594, CG iterations: 17744, optimality: 1.15e-02, constraint violation: 0.00e+00, execution time:  4.4 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 105, function evaluations: 99, CG iterations: 2018, optimality: 1.43e-05, constraint violation: 0.00e+00, execution time: 0.82 s.
+Run 53
+`xtol` termination condition is satisfied.
+Number of iterations: 446, function evaluations: 446, CG iterations: 11607, optimality: 6.24e-03, constraint violation: 0.00e+00, execution time:  3.2 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 73, function evaluations: 65, CG iterations: 903, optimality: 4.78e-06, constraint violation: 0.00e+00, execution time: 0.54 s.
+Run 54
+`xtol` termination condition is satisfied.
+Number of iterations: 740, function evaluations: 740, CG iterations: 19350, optimality: 2.40e-03, constraint violation: 0.00e+00, execution time:  5.3 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 116, function evaluations: 110, CG iterations: 2053, optimality: 7.62e-06, constraint violation: 0.00e+00, execution time: 0.92 s.
+Run 55
+`xtol` termination condition is satisfied.
+Number of iterations: 723, function evaluations: 723, CG iterations: 21084, optimality: 4.96e-04, constraint violation: 0.00e+00, execution time:  5.3 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 124, function evaluations: 116, CG iterations: 2587, optimality: 3.66e-06, constraint violation: 0.00e+00, execution time:  1.0 s.
+Run 56
+`xtol` termination condition is satisfied.
+Number of iterations: 532, function evaluations: 532, CG iterations: 15315, optimality: 1.85e-03, constraint violation: 0.00e+00, execution time:  3.9 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 68, function evaluations: 61, CG iterations: 901, optimality: 5.92e-05, constraint violation: 0.00e+00, execution time: 0.53 s.
+Run 57
+`xtol` termination condition is satisfied.
+Number of iterations: 1184, function evaluations: 1184, CG iterations: 34056, optimality: 6.97e-03, constraint violation: 0.00e+00, execution time:  8.7 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 89, function evaluations: 82, CG iterations: 1313, optimality: 1.03e-05, constraint violation: 0.00e+00, execution time: 0.71 s.
+Run 58
+`xtol` termination condition is satisfied.
+Number of iterations: 1461, function evaluations: 1461, CG iterations: 49127, optimality: 2.17e-03, constraint violation: 0.00e+00, execution time: 1.1e+01 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 134, function evaluations: 128, CG iterations: 2909, optimality: 3.65e-05, constraint violation: 0.00e+00, execution time:  1.1 s.
+Run 59
+`xtol` termination condition is satisfied.
+Number of iterations: 853, function evaluations: 853, CG iterations: 30730, optimality: 5.61e-04, constraint violation: 0.00e+00, execution time:  6.5 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 111, function evaluations: 103, CG iterations: 2559, optimality: 1.02e-05, constraint violation: 0.00e+00, execution time: 0.92 s.
+Run 60
+`xtol` termination condition is satisfied.
+Number of iterations: 988, function evaluations: 988, CG iterations: 27565, optimality: 4.31e-04, constraint violation: 0.00e+00, execution time:  7.2 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 72, function evaluations: 66, CG iterations: 991, optimality: 6.01e-05, constraint violation: 0.00e+00, execution time: 0.54 s.
+Run 61
+`xtol` termination condition is satisfied.
+Number of iterations: 774, function evaluations: 774, CG iterations: 24326, optimality: 8.79e-04, constraint violation: 0.00e+00, execution time:  5.8 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 97, function evaluations: 91, CG iterations: 2334, optimality: 1.29e-05, constraint violation: 0.00e+00, execution time: 0.83 s.
+Run 62
+`xtol` termination condition is satisfied.
+Number of iterations: 882, function evaluations: 882, CG iterations: 29489, optimality: 6.44e-03, constraint violation: 0.00e+00, execution time:  6.6 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 100, function evaluations: 95, CG iterations: 2130, optimality: 1.47e-04, constraint violation: 0.00e+00, execution time:  0.8 s.
+Run 63
+`xtol` termination condition is satisfied.
+Number of iterations: 840, function evaluations: 840, CG iterations: 27209, optimality: 4.33e-03, constraint violation: 0.00e+00, execution time:  6.3 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 96, function evaluations: 90, CG iterations: 1878, optimality: 6.71e-06, constraint violation: 0.00e+00, execution time: 0.79 s.
+Run 64
+`xtol` termination condition is satisfied.
+Number of iterations: 841, function evaluations: 841, CG iterations: 29564, optimality: 1.16e-02, constraint violation: 0.00e+00, execution time:  6.4 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 75, function evaluations: 69, CG iterations: 1163, optimality: 2.13e-05, constraint violation: 0.00e+00, execution time: 0.57 s.
+Run 65
+`xtol` termination condition is satisfied.
+Number of iterations: 647, function evaluations: 647, CG iterations: 18299, optimality: 1.61e-03, constraint violation: 0.00e+00, execution time:  4.7 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 73, function evaluations: 67, CG iterations: 1065, optimality: 4.75e-05, constraint violation: 0.00e+00, execution time: 0.57 s.
+Run 66
+`xtol` termination condition is satisfied.
+Number of iterations: 1386, function evaluations: 1386, CG iterations: 48075, optimality: 1.06e-03, constraint violation: 0.00e+00, execution time: 1e+01 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 126, function evaluations: 119, CG iterations: 2588, optimality: 5.82e-05, constraint violation: 0.00e+00, execution time:  1.0 s.
+Run 67
+`xtol` termination condition is satisfied.
+Number of iterations: 884, function evaluations: 884, CG iterations: 24046, optimality: 3.75e-03, constraint violation: 0.00e+00, execution time:  6.4 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 128, function evaluations: 123, CG iterations: 3322, optimality: 6.39e-06, constraint violation: 0.00e+00, execution time:  1.1 s.
+Run 68
+`xtol` termination condition is satisfied.
+Number of iterations: 522, function evaluations: 522, CG iterations: 13224, optimality: 5.64e-04, constraint violation: 0.00e+00, execution time:  3.7 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 82, function evaluations: 75, CG iterations: 1133, optimality: 1.92e-05, constraint violation: 0.00e+00, execution time: 0.63 s.
+Run 69
+`xtol` termination condition is satisfied.
+Number of iterations: 1552, function evaluations: 1552, CG iterations: 78809, optimality: 7.06e-04, constraint violation: 0.00e+00, execution time: 1.3e+01 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 98, function evaluations: 92, CG iterations: 1879, optimality: 5.69e-05, constraint violation: 0.00e+00, execution time: 0.82 s.
+Run 70
+`xtol` termination condition is satisfied.
+Number of iterations: 942, function evaluations: 942, CG iterations: 29894, optimality: 2.87e-03, constraint violation: 0.00e+00, execution time:  7.0 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 120, function evaluations: 110, CG iterations: 2571, optimality: 2.84e-05, constraint violation: 0.00e+00, execution time:  1.0 s.
+Run 71
+`xtol` termination condition is satisfied.
+Number of iterations: 741, function evaluations: 741, CG iterations: 19894, optimality: 8.83e-03, constraint violation: 0.00e+00, execution time:  5.3 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 88, function evaluations: 81, CG iterations: 2321, optimality: 7.92e-06, constraint violation: 0.00e+00, execution time: 0.72 s.
+Run 72
+`xtol` termination condition is satisfied.
+Number of iterations: 748, function evaluations: 748, CG iterations: 25425, optimality: 1.92e-03, constraint violation: 0.00e+00, execution time:  5.8 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 131, function evaluations: 126, CG iterations: 2635, optimality: 1.72e-05, constraint violation: 0.00e+00, execution time:  1.1 s.
+Run 73
+`xtol` termination condition is satisfied.
+Number of iterations: 1105, function evaluations: 1105, CG iterations: 33731, optimality: 5.41e-04, constraint violation: 0.00e+00, execution time:  8.1 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 153, function evaluations: 148, CG iterations: 3874, optimality: 1.80e-05, constraint violation: 0.00e+00, execution time:  1.3 s.
+Run 74
+`xtol` termination condition is satisfied.
+Number of iterations: 726, function evaluations: 726, CG iterations: 25664, optimality: 1.01e-03, constraint violation: 0.00e+00, execution time:  5.5 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 94, function evaluations: 88, CG iterations: 1536, optimality: 6.88e-06, constraint violation: 0.00e+00, execution time: 0.75 s.
+Run 75
+`xtol` termination condition is satisfied.
+Number of iterations: 1344, function evaluations: 1342, CG iterations: 47146, optimality: 8.41e-04, constraint violation: 0.00e+00, execution time: 1e+01 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 112, function evaluations: 105, CG iterations: 2281, optimality: 1.81e-04, constraint violation: 0.00e+00, execution time:  0.9 s.
+Run 76
+`xtol` termination condition is satisfied.
+Number of iterations: 774, function evaluations: 774, CG iterations: 22361, optimality: 7.29e-04, constraint violation: 0.00e+00, execution time:  5.6 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 76, function evaluations: 71, CG iterations: 1569, optimality: 5.84e-05, constraint violation: 0.00e+00, execution time:  0.6 s.
+Run 77
+`xtol` termination condition is satisfied.
+Number of iterations: 547, function evaluations: 547, CG iterations: 14656, optimality: 1.58e-04, constraint violation: 0.00e+00, execution time:  3.9 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 104, function evaluations: 96, CG iterations: 2294, optimality: 2.62e-03, constraint violation: 0.00e+00, execution time: 0.84 s.
+Run 78
+`xtol` termination condition is satisfied.
+Number of iterations: 539, function evaluations: 539, CG iterations: 14634, optimality: 3.34e-04, constraint violation: 0.00e+00, execution time:  3.9 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 107, function evaluations: 101, CG iterations: 2221, optimality: 5.83e-05, constraint violation: 0.00e+00, execution time: 0.94 s.
+Run 79
+`xtol` termination condition is satisfied.
+Number of iterations: 1092, function evaluations: 1092, CG iterations: 29170, optimality: 3.67e-04, constraint violation: 0.00e+00, execution time:  7.8 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 100, function evaluations: 94, CG iterations: 1556, optimality: 2.83e-05, constraint violation: 0.00e+00, execution time: 0.78 s.
+Run 80
+`xtol` termination condition is satisfied.
+Number of iterations: 446, function evaluations: 446, CG iterations: 13385, optimality: 3.36e-04, constraint violation: 0.00e+00, execution time:  3.2 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 113, function evaluations: 108, CG iterations: 2540, optimality: 1.36e-05, constraint violation: 0.00e+00, execution time: 0.93 s.
+Run 81
+`xtol` termination condition is satisfied.
+Number of iterations: 915, function evaluations: 915, CG iterations: 26606, optimality: 3.26e-04, constraint violation: 0.00e+00, execution time:  6.7 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 69, function evaluations: 62, CG iterations: 777, optimality: 1.30e-05, constraint violation: 0.00e+00, execution time: 0.49 s.
+Run 82
+`xtol` termination condition is satisfied.
+Number of iterations: 984, function evaluations: 984, CG iterations: 31133, optimality: 3.93e-04, constraint violation: 0.00e+00, execution time:  7.3 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 93, function evaluations: 83, CG iterations: 2068, optimality: 1.01e-04, constraint violation: 0.00e+00, execution time: 0.73 s.
+Run 83
+`xtol` termination condition is satisfied.
+Number of iterations: 466, function evaluations: 466, CG iterations: 12572, optimality: 4.23e-04, constraint violation: 0.00e+00, execution time:  3.3 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 92, function evaluations: 84, CG iterations: 1981, optimality: 9.68e-05, constraint violation: 0.00e+00, execution time: 0.74 s.
+Run 84
+`xtol` termination condition is satisfied.
+Number of iterations: 1183, function evaluations: 1183, CG iterations: 45092, optimality: 3.97e-03, constraint violation: 0.00e+00, execution time:  9.2 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 98, function evaluations: 92, CG iterations: 1872, optimality: 5.65e-05, constraint violation: 0.00e+00, execution time: 0.79 s.
+Run 85
+`xtol` termination condition is satisfied.
+Number of iterations: 932, function evaluations: 932, CG iterations: 28711, optimality: 4.38e-03, constraint violation: 0.00e+00, execution time:  6.8 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 82, function evaluations: 75, CG iterations: 1320, optimality: 6.39e-06, constraint violation: 0.00e+00, execution time: 0.64 s.
+Run 86
+`xtol` termination condition is satisfied.
+Number of iterations: 607, function evaluations: 607, CG iterations: 17553, optimality: 4.30e-03, constraint violation: 0.00e+00, execution time:  4.4 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 125, function evaluations: 120, CG iterations: 2418, optimality: 1.18e-05, constraint violation: 0.00e+00, execution time:  1.0 s.
+Run 87
+`xtol` termination condition is satisfied.
+Number of iterations: 1126, function evaluations: 1126, CG iterations: 38772, optimality: 4.54e-04, constraint violation: 0.00e+00, execution time:  8.5 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 132, function evaluations: 124, CG iterations: 2048, optimality: 2.37e-04, constraint violation: 0.00e+00, execution time:  1.1 s.
+Run 88
+`xtol` termination condition is satisfied.
+Number of iterations: 815, function evaluations: 815, CG iterations: 25814, optimality: 5.42e-04, constraint violation: 0.00e+00, execution time:  6.0 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 114, function evaluations: 108, CG iterations: 1982, optimality: 4.53e-05, constraint violation: 0.00e+00, execution time: 0.92 s.
+Run 89
+`xtol` termination condition is satisfied.
+Number of iterations: 562, function evaluations: 562, CG iterations: 14851, optimality: 5.80e-04, constraint violation: 0.00e+00, execution time:  4.0 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 91, function evaluations: 85, CG iterations: 2355, optimality: 1.71e-05, constraint violation: 0.00e+00, execution time: 0.75 s.
+Run 90
+`xtol` termination condition is satisfied.
+Number of iterations: 763, function evaluations: 763, CG iterations: 20913, optimality: 4.31e-03, constraint violation: 0.00e+00, execution time:  5.5 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 137, function evaluations: 128, CG iterations: 2677, optimality: 8.43e-05, constraint violation: 0.00e+00, execution time:  1.2 s.
+Run 91
+`xtol` termination condition is satisfied.
+Number of iterations: 1143, function evaluations: 1143, CG iterations: 42009, optimality: 5.22e-04, constraint violation: 0.00e+00, execution time:  8.7 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 118, function evaluations: 110, CG iterations: 2192, optimality: 4.96e-04, constraint violation: 0.00e+00, execution time: 0.98 s.
+Run 92
+`xtol` termination condition is satisfied.
+Number of iterations: 962, function evaluations: 962, CG iterations: 30962, optimality: 1.21e-03, constraint violation: 0.00e+00, execution time:  7.1 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 130, function evaluations: 120, CG iterations: 3042, optimality: 7.67e-06, constraint violation: 0.00e+00, execution time:  1.1 s.
+Run 93
+`xtol` termination condition is satisfied.
+Number of iterations: 1063, function evaluations: 1063, CG iterations: 28036, optimality: 1.63e-03, constraint violation: 0.00e+00, execution time:  7.6 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 66, function evaluations: 60, CG iterations: 856, optimality: 1.49e-04, constraint violation: 0.00e+00, execution time: 0.48 s.
+Run 94
+`xtol` termination condition is satisfied.
+Number of iterations: 1187, function evaluations: 1187, CG iterations: 36291, optimality: 8.29e-04, constraint violation: 0.00e+00, execution time:  8.7 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 81, function evaluations: 73, CG iterations: 1046, optimality: 1.03e-05, constraint violation: 0.00e+00, execution time:  0.6 s.
+Run 95
+`xtol` termination condition is satisfied.
+Number of iterations: 1103, function evaluations: 1103, CG iterations: 38193, optimality: 7.23e-04, constraint violation: 0.00e+00, execution time:  8.2 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 119, function evaluations: 112, CG iterations: 2041, optimality: 3.10e-05, constraint violation: 0.00e+00, execution time: 0.93 s.
+Run 96
+`xtol` termination condition is satisfied.
+Number of iterations: 816, function evaluations: 816, CG iterations: 25837, optimality: 1.31e-03, constraint violation: 0.00e+00, execution time:  6.0 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 89, function evaluations: 82, CG iterations: 1126, optimality: 1.47e-05, constraint violation: 0.00e+00, execution time: 0.67 s.
+Run 97
+`xtol` termination condition is satisfied.
+Number of iterations: 725, function evaluations: 725, CG iterations: 18016, optimality: 4.62e-04, constraint violation: 0.00e+00, execution time:  5.1 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 110, function evaluations: 104, CG iterations: 2519, optimality: 4.12e-05, constraint violation: 0.00e+00, execution time: 0.92 s.
+Run 98
+`xtol` termination condition is satisfied.
+Number of iterations: 1216, function evaluations: 1216, CG iterations: 38370, optimality: 1.60e-03, constraint violation: 0.00e+00, execution time:  8.9 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 122, function evaluations: 117, CG iterations: 2347, optimality: 5.58e-05, constraint violation: 0.00e+00, execution time:  1.0 s.
+Run 99
+`xtol` termination condition is satisfied.
+Number of iterations: 623, function evaluations: 623, CG iterations: 20336, optimality: 4.91e-04, constraint violation: 0.00e+00, execution time:  4.6 s.
+`xtol` termination condition is satisfied.
+Number of iterations: 118, function evaluations: 111, CG iterations: 2074, optimality: 2.46e-06, constraint violation: 0.00e+00, execution time: 0.94 s.
