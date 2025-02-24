@@ -1,21 +1,18 @@
 import os
 import argparse
 import numpy as np
-import pickle
-import scipy.optimize as so
+import time
 
-parser = argparse.ArgumentParser(prog='compareQOC',
-                                 description='Compare QOC with and without Hessians')
+parser = argparse.ArgumentParser(prog='timeQOC',
+                                 description='Time the adjgrad and adjhess QOC functions')
 
-parser.add_argument('--mol', required=True, help='name of molecule')
-parser.add_argument('--basis', required=True, help='name of basis set')
+parser.add_argument('--sys', required=True, help='path to system file containing hamiltonian, dipole moment matrices, and initial/final states')
 parser.add_argument('--outpath', required=True, help='output path')
+parser.add_argument('--postfix', required=True, help='string to append to saved files')
 parser.add_argument('--nsteps', type=int, required=True, help='number of time steps to take from 0 to T')
+parser.add_argument('--numruns', required=True, type=int, help='number of runs')
 parser.add_argument('--dt', type=float, required=True, help='deltat (size of time step) to use')
-parser.add_argument('--numruns', type=int, required=True, help='number of runs')
-parser.add_argument('--postfix', required=False, help='string to append to saved files')
 parser.add_argument('--gpu', required=False, type=int, help='which GPU to use')
-parser.add_argument('--opt', required=False, help='pickled dictionary with all optimization parameters')
 
 # actually parse command-line arguments
 args = parser.parse_args()
@@ -33,34 +30,18 @@ import jax
 jax.config.update("jax_enable_x64", True)
 import jax.numpy as jnp
 from jax import jit, grad, jacobian, lax, vmap
-
-# set mol
-mol = args.mol
-if mol!='h2' and mol!='heh+':
-    print("Molecule must either be H2 or HeH+!")
-    sys.exit(1)
-
-# set basis
-basis = args.basis
-if basis=='sto-3g':
-    prefix = 'casscf22_s2_'
-elif basis=='6-31g':
-    prefix = 'casscf24_s15_'
-else:
-    print("Basis set must either be sto-3g or 6-31g!")
-    sys.exit(1)
     
 # load Hamiltonian
-h0 = np.load('./data/'+prefix+mol+'_'+basis+'_hamiltonian.npz')
+sysfile = np.load(args.sys)
+h0 = jnp.array(sysfile['h0'])
 n = h0.shape[0]
 
 # load dipole moment matrix
-m = np.load('./data/'+prefix+mol+'_'+basis+'_CI_dimat.npz')
+m = jnp.array(sysfile['m'])
 
 # load initial and final states
-P0T = np.load('./data/'+mol+'_'+basis+'_P0T.npz')
-thisalpha = jnp.array(P0T['alpha'])
-thisbeta = jnp.array(P0T['beta'])
+thisalpha = jnp.array(sysfile['alpha'])
+thisbeta = jnp.array(sysfile['beta'])
 
 print("alpha = " + str(thisalpha))
 print("beta = " + str(thisbeta))
@@ -69,10 +50,7 @@ print("beta = " + str(thisbeta))
 outpath = args.outpath
 
 # set postfix
-if args.postfix:
-    postfix = args.postfix
-else:
-    postfix = ""
+postfix = args.postfix
 
 # set nsteps
 numsteps = args.nsteps
@@ -82,23 +60,7 @@ print("numsteps = " + str(numsteps))
 dt = args.dt
 print("dt = " + str(dt))
 
-# set optimization parameters
-if args.opt:
-    opfile = open(args.opt, 'rb')
-    optparams = pickle.load(opfile)
-    opfile.close()
-    print("")
-    print("Loading optimization parameters from " + args.opt)
-    print("")
-    maxiter = optparams['maxiter']
-    xtol = optparams['xtol']
-    gtol = optparams['gtol']
-    rho = optparams['rho']
-else:
-    maxiter = 10000
-    xtol = 1e-10
-    gtol = 1e-10
-    rho = 1e6
+rho = 1e6
 
 # (d/dx) \exp(-1j*dt*(h0 + x m))
 # where you pass in the eigenvectors and eigenvalues of (h0 + x m)
@@ -199,6 +161,14 @@ def cost(f, alpha, beta):
     pen = jnp.real(jnp.sum(resid * resid.conj()))
     return 0.5*jnp.sum(f**2) + 0.5*rho*pen
 
+# given forcing f, IC alpha, FC beta, return stats
+def stats(f, alpha, beta):
+    a = propSchro(f, alpha)
+    resid = a[-1] - beta
+    pen = jnp.real(jnp.sum(resid * resid.conj()))
+    controlcost = jnp.sum(f**2)
+    return controlcost, pen
+
 # first-order adjoint method
 def adjgrad(f, alpha, beta):
     manyhams = jnp.expand_dims(h0,0) + jnp.expand_dims(f,(1,2))*jnp.expand_dims(m,0)
@@ -236,7 +206,7 @@ def adjgrad(f, alpha, beta):
     return thegrad
 
 # second-order adjoint method
-def adjhess(f, alpha, beta):
+def adjgradhess(f, alpha, beta):
     manyhams = jnp.expand_dims(h0,0) + jnp.expand_dims(f,(1,2))*jnp.expand_dims(m,0)
     allevals, allevecs = manyeigh(manyhams)
     expevals = jnp.exp(-1j*dt*allevals)
@@ -290,64 +260,49 @@ def adjhess(f, alpha, beta):
     # second critical calculation
     allexpderivs2 = vsd(allevecs, allevals)
     
+    # compute gradient
+    ourgrad = jnp.einsum('ai,aij,aj->a',alllamb[1:],allexpderivs,a[:-1])
+    thegrad = f + jnp.real(ourgrad)
+    
     # compute Hessian
     gradapad = jnp.concatenate([jnp.zeros((1,numsteps,n),dtype=jnp.complex128), grada[:-1,:,:]])
     parts12 = vohr(alllamb[1:],allmu[1:],allexpderivs,a[:-1],gradapad)
     part3 = jnp.diag(jnp.real(jnp.einsum('ai,aij,aj->a',alllamb[1:],allexpderivs2,a[:-1])))
     thehess = jnp.eye(numsteps) + parts12 + part3
     
-    return thehess
+    return thegrad, thehess
 
 jcost = jit(cost)
 jadjgrad = jit(adjgrad)
-jadjhess = jit(adjhess)
+jadjgradhess = jit(adjgradhess)
+jstats = jit(stats)
 
 # force JIT compilation
 finit = jnp.array(np.random.normal(size=numsteps))
 mycost = jcost(finit, thisalpha, thisbeta)
 mygrad = jadjgrad(finit, thisalpha, thisbeta)
-myhess = jadjhess(finit, thisalpha, thisbeta)
+mygrad2, myhess = jadjgradhess(finit, thisalpha, thisbeta)
 
-# wrappers
-def obj(x):
-    jx = jnp.array(x)
-    return jcost(jx,thisalpha,thisbeta).item()
-
-def gradobj(x):
-    jx = jnp.array(x)
-    return np.array(jadjgrad(jx,thisalpha,thisbeta))
-
-def hessobj(x):
-    jx = jnp.array(x)
-    return np.array(jadjhess(jx,thisalpha,thisbeta))
-
-# run both methods many times and save results
+# number of runs
 numruns = args.numruns
-gradstats = np.zeros((numruns,6))
-hessstats = np.zeros((numruns,6))
 
-def stats(xstar, finit):
-    out = np.zeros(6)
-    out[0] = xstar.nit
-    out[1] = xstar.execution_time
-    out[2] = obj(xstar.x)
-    out[3] = np.linalg.norm(gradobj(xstar.x))
-    a = propSchro(jnp.array(xstar.x), thisalpha)
-    out[4] = np.linalg.norm(np.array(a[-1] - thisbeta))
-    out[5] = obj(xstar.x)/obj(finit)
-    return out
-
-for run in range(numruns):
-    print("Run " + str(run))
+# time adjgrad
+gradtimes = np.zeros(numruns)
+for j in range(numruns):
     finit = jnp.array(np.random.normal(size=numsteps))
-    xstargrad = so.minimize(obj, x0=finit, method='trust-constr', jac=gradobj,
-                            options={'gtol':gtol,'xtol':xtol,'maxiter':maxiter,'verbose':1})
-    gradstats[run, :] = stats(xstargrad, finit) 
-    
-    xstarhess = so.minimize(obj, x0=finit, method='trust-constr', jac=gradobj, hess=hessobj,
-                            options={'gtol':gtol,'xtol':xtol,'maxiter':maxiter,'verbose':1})
-    hessstats[run, :] = stats(xstarhess, finit)
+    start = time.time()
+    mygrad = jadjgrad(finit, thisalpha, thisbeta)
+    end = time.time()
+    gradtimes[j] = end-start
 
-fname = outpath + "compare_" + mol + "_" + basis + postfix + ".npz"
-np.savez(fname, gradstats=gradstats, hessstats=hessstats)
+# time adjgradhess
+hesstimes = np.zeros(numruns)
+for j in range(numruns):
+    finit = jnp.array(np.random.normal(size=numsteps))
+    start = time.time()
+    myhess = jadjgradhess(finit, thisalpha, thisbeta)
+    end = time.time()
+    hesstimes[j] = end-start
 
+outfname = outpath + 'times_' + str(n) + '_' + str(numsteps) + postfix + '.npz'
+np.savez(outfname, gt=gradtimes, ht=hesstimes)

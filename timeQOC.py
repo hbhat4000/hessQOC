@@ -49,11 +49,11 @@ else:
     sys.exit(1)
     
 # load Hamiltonian
-h0 = np.load('./data/'+prefix+mol+'_'+basis+'_hamiltonian.npz')
+h0 = jnp.array(np.load('./data/'+prefix+mol+'_'+basis+'_hamiltonian.npz'))
 n = h0.shape[0]
 
 # load dipole moment matrix
-m = np.load('./data/'+prefix+mol+'_'+basis+'_CI_dimat.npz')
+m = jnp.array(np.load('./data/'+prefix+mol+'_'+basis+'_CI_dimat.npz'))
 
 # load initial and final states
 P0T = np.load('./data/'+mol+'_'+basis+'_P0T.npz')
@@ -223,7 +223,7 @@ def adjgrad(f, alpha, beta):
     return thegrad
 
 # second-order adjoint method
-def adjhess(f, alpha, beta):
+def adjgradhess(f, alpha, beta):
     manyhams = jnp.expand_dims(h0,0) + jnp.expand_dims(f,(1,2))*jnp.expand_dims(m,0)
     allevals, allevecs = manyeigh(manyhams)
     expevals = jnp.exp(-1j*dt*allevals)
@@ -277,24 +277,28 @@ def adjhess(f, alpha, beta):
     # second critical calculation
     allexpderivs2 = vsd(allevecs, allevals)
     
+    # compute gradient
+    ourgrad = jnp.einsum('ai,aij,aj->a',alllamb[1:],allexpderivs,a[:-1])
+    thegrad = f + jnp.real(ourgrad)
+    
     # compute Hessian
     gradapad = jnp.concatenate([jnp.zeros((1,numsteps,n),dtype=jnp.complex128), grada[:-1,:,:]])
     parts12 = vohr(alllamb[1:],allmu[1:],allexpderivs,a[:-1],gradapad)
     part3 = jnp.diag(jnp.real(jnp.einsum('ai,aij,aj->a',alllamb[1:],allexpderivs2,a[:-1])))
     thehess = jnp.eye(numsteps) + parts12 + part3
     
-    return thehess
+    return thegrad, thehess
 
 jcost = jit(cost)
 jadjgrad = jit(adjgrad)
-jadjhess = jit(adjhess)
+jadjgradhess = jit(adjgradhess)
 jstats = jit(stats)
 
 # force JIT compilation
 finit = jnp.array(np.random.normal(size=numsteps))
 mycost = jcost(finit, thisalpha, thisbeta)
 mygrad = jadjgrad(finit, thisalpha, thisbeta)
-myhess = jadjhess(finit, thisalpha, thisbeta)
+mygrad2, myhess = jadjgradhess(finit, thisalpha, thisbeta)
 
 # number of runs
 numruns = args.numruns
@@ -308,12 +312,12 @@ for j in range(numruns):
     end = time.time()
     gradtimes[j] = end-start
 
-# time adjgrad
+# time adjgradhess
 hesstimes = np.zeros(numruns)
 for j in range(numruns):
     finit = jnp.array(np.random.normal(size=numsteps))
     start = time.time()
-    myhess = jadjhess(finit, thisalpha, thisbeta)
+    myhess = jadjgradhess(finit, thisalpha, thisbeta)
     end = time.time()
     hesstimes[j] = end-start
 

@@ -1,6 +1,6 @@
 #!/bin/bash
-#SBATCH --job-name=heh+_sto-3g
-#SBATCH --time=00-12:00
+#SBATCH --job-name=time_heh+_sto-3g
+#SBATCH --time=00-23:59
 #SBATCH --partition=gpuA100x4
 #SBATCH --mem=64G
 #SBATCH --signal=USR2
@@ -14,6 +14,10 @@
 #SBATCH --error=heh+_sto-3g.err
 # ---------------------------------------------------
 
-python compareQOC.py --mol heh+ --basis sto-3g --outpath ./output/ --nsteps 200 --dt 1e-1 --numruns 100
+for i in $(seq 2 11);
+do
+    nsteps=$((2**i))
+    echo $nsteps
+    python timeQOC.py --mol heh+ --basis sto-3g --outpath ./output/ --postfix "" --nsteps $nsteps --dt 1e-1 --numruns 1000
+done
 
-# python hessQOC.py --mol heh+ --basis sto-3g --outpath ./output/ --postfix "" --nsteps 100 --dt 1e-1
