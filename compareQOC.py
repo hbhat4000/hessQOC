@@ -337,17 +337,29 @@ def stats(xstar, finit):
     out[5] = obj(xstar.x)/obj(finit)
     return out
 
+bestGobj = np.inf
+bestGres = np.zeros(numsteps)
+bestHobj = np.inf
+bestHres = np.zeros(numsteps)
+
 for run in range(numruns):
     print("Run " + str(run))
     finit = jnp.array(np.random.normal(size=numsteps))
     xstargrad = so.minimize(obj, x0=finit, method='trust-constr', jac=gradobj,
                             options={'gtol':gtol,'xtol':xtol,'maxiter':maxiter,'verbose':1})
-    gradstats[run, :] = stats(xstargrad, finit) 
+    if xstargrad.fun < bestGobj:
+        bestGobj = xstargrad.fun
+        bestGres = xstargrad.x
+    
+    gradstats[run, :] = stats(xstargrad, finit)
     
     xstarhess = so.minimize(obj, x0=finit, method='trust-constr', jac=gradobj, hess=hessobj,
                             options={'gtol':gtol,'xtol':xtol,'maxiter':maxiter,'verbose':1})
+    if xstarhess.fun < bestHobj:
+        bestHobj = xstarhess.fun
+        bestHres = xstarhess.x
+    
     hessstats[run, :] = stats(xstarhess, finit)
 
 fname = outpath + "compare_" + mol + "_" + basis + postfix + ".npz"
-np.savez(fname, gradstats=gradstats, hessstats=hessstats)
-
+np.savez(fname, gradstats=gradstats, hessstats=hessstats, bestGres=bestGres, bestHres=bestHres)

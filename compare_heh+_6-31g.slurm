@@ -12,7 +12,7 @@
 #SBATCH --mail-user=hbhat@ucmerced.edu
 #SBATCH --output=heh+_6-31g.out
 #SBATCH --error=heh+_6-31g.err
-#SBATCH --array=0-99
+#SBATCH --array=0-999
 # ---------------------------------------------------
 
 python compareQOC.py --mol heh+ --basis 6-31g --outpath ./output/compare_heh+_6-31g/ --nsteps 200 --dt 1e-1 --numruns 1 --postfix $SLURM_ARRAY_TASK_ID
