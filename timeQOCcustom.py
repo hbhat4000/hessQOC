@@ -300,7 +300,7 @@ hesstimes = np.zeros(numruns)
 for j in range(numruns):
     finit = jnp.array(np.random.normal(size=numsteps))
     start = time.time()
-    myhess = jadjgradhess(finit, thisalpha, thisbeta)
+    mygrad, myhess = jadjgradhess(finit, thisalpha, thisbeta)
     end = time.time()
     hesstimes[j] = end-start
 

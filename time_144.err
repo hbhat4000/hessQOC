@@ -1,0 +1,10 @@
+2025-03-13 19:50:00.882948: W external/xla/xla/tsl/framework/bfc_allocator.cc:497] Allocator (GPU_0_bfc) ran out of memory trying to allocate 27.64GiB (rounded to 29680228608)requested by op 
+2025-03-13 19:50:00.883368: W external/xla/xla/tsl/framework/bfc_allocator.cc:508] __________________________________________________________________**_______________________________*
+E0313 19:50:00.883401 4036201 pjrt_stream_executor_client.cc:3085] Execution of replica 0 failed: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 29680228520 bytes.
+Traceback (most recent call last):
+  File "/u/hbhat/hessQOC/timeQOCcustom.py", line 284, in <module>
+    mygrad2, myhess = jadjgradhess(finit, thisalpha, thisbeta)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jaxlib.xla_extension.XlaRuntimeError: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 29680228520 bytes.
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
